@@ -19,6 +19,12 @@ sealed interface Screens: NavKey {
     @Serializable
     data object ResetConfirmationScreen : Screens
 
+    @Serializable
+    data object SignUpScreen : Screens
+
+    @Serializable
+    data object EmailVerificationScreen : Screens
+
     //Users
 
     @Serializable
