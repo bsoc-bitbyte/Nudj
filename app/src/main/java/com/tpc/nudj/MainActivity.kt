@@ -31,6 +31,7 @@ import com.tpc.nudj.ui.screens.auth.signup.SignUpScreen
 import com.tpc.nudj.ui.screens.clubDashboard.ClubDashboardScreen
 import com.tpc.nudj.ui.screens.dashboard.DashboardScreen
 import com.tpc.nudj.ui.screens.detailsFetch.UserDetailsFetchScreen
+import com.tpc.nudj.ui.screens.eventDetailsScreen.EventDetailsScreen
 import com.tpc.nudj.ui.screens.eventRegistration.EventRegistrationScreen
 import com.tpc.nudj.ui.screens.myClubs.MyClubs
 import com.tpc.nudj.ui.theme.NudjTheme

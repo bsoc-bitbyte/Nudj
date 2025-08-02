@@ -35,6 +35,20 @@ class RsvpRepositoryImpl @Inject constructor() : RsvpRepository {
         }
     }
 
+    override suspend fun checkRsvpStatus(eventId: String, userId: String?): Boolean {
+        return try {
+            val rsvpId = "${userId}:${eventId}"
+            val documentSnapshot = firestore.collection(FirestoreCollections.RSVP.path)
+                .document(rsvpId)
+                .get()
+                .await()
+            documentSnapshot.exists()
+        } catch (e: Exception) {
+            Log.e("RsvpRepository", "Failed to check rsvp status: ${e.message}")
+            false
+        }
+    }
+
     override suspend fun cancelRsvp(eventId: String, userId: String): Boolean {
         return try {
             val rsvpId = "${userId}:${eventId}"

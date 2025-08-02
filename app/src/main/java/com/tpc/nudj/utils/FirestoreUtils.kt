@@ -123,6 +123,7 @@ object FirestoreUtils {
             organizerName = (data["organizerName"] as? String) ?: "",
             organizerContactNumber = (data["organizerContactNumber"] as? String) ?: "",
             eventDates = eventDates,
+            eventVenue = data["eventVenue"] as? String ?: "",
             faqs = faqs,
             filterBatch = filterBatch,
             isDeleted = (data["isDeleted"] as? Boolean) ?: false,
