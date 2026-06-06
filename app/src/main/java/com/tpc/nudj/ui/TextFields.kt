@@ -7,6 +7,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -23,7 +28,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lint.kotlin.metadata.Visibility
 import com.tpc.nudj.ui.theme.NudjTheme
+
 
 @Composable
 fun NudjTextField(
@@ -33,7 +40,9 @@ fun NudjTextField(
     modifier: Modifier = Modifier,
     placeholder: String = "",
     isPassword: Boolean = false,
-    keyboardType: KeyboardType = KeyboardType.Text
+    keyboardType: KeyboardType = KeyboardType.Text,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
@@ -46,11 +55,11 @@ fun NudjTextField(
         OutlinedTextField(
             value = value,
             onValueChange = onValueChange,
-            placeholder = { if (placeholder.isNotEmpty()) Text(text = placeholder,
-                style = MaterialTheme.typography.bodyLarge) },
-
+            placeholder = { if (placeholder.isNotEmpty()) Text(text = placeholder, style = MaterialTheme.typography.bodyLarge) },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
             visualTransformation = if (isPassword) PasswordVisualTransformation(mask = '*') else VisualTransformation.None,
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             textStyle = MaterialTheme.typography.bodyLarge,
@@ -89,11 +98,26 @@ fun EmailTextField(value: String, onValueChange: (String) -> Unit){
 
 @Composable
 fun PasswordTextField(value: String, onValueChange: (String) -> Unit) {
-    NudjTextField(value = value,
+    var passwordVisible by remember { mutableStateOf(false) }
+
+    NudjTextField(
+        value = value,
         onValueChange = onValueChange,
         label = "Password",
-        isPassword = true,
-        keyboardType = KeyboardType.Password)
+        isPassword = !passwordVisible,
+        keyboardType = KeyboardType.Password,
+        trailingIcon = {
+            val image = if (passwordVisible) {
+                Icons.Filled.Visibility
+            } else {
+                Icons.Filled.VisibilityOff
+            }
+
+            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                Icon(imageVector = image, contentDescription = "Toggle password visibility")
+            }
+        }
+    )
 }
 
 @Composable
