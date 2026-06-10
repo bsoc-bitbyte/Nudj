@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,10 +15,15 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     val loginUiState: StateFlow<LoginUiState> = _loginUiState.asStateFlow()
 
     fun onEmailChange(email: String) {
-
+        _loginUiState.update {
+            it.copy(email = email)
+        }
     }
 
     fun onPasswordChange(password: String) {
+        _loginUiState.update {
+            it.copy(password = password)
+        }
 
     }
 
