@@ -2,6 +2,7 @@ package com.tpc.nudj.ui.screen.auth.forgotPassword
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,7 +29,7 @@ import com.tpc.nudj.viewmodels.auth.forgotPassword.ForgotPasswordViewModel
 @Composable
 fun ForgetPasswordScreen(
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
-    onSendEmailClick :()-> Unit ={}
+
 ) {
     Scaffold(
         topBar = {
@@ -42,7 +43,7 @@ fun ForgetPasswordScreen(
             modifier = Modifier.padding(paddingValues),
             uiState = uiState,
             onEmailInput = viewModel::onEmailChange,
-            onSendEmailClick = onSendEmailClick
+            onSendEmailClick = viewModel ::onSendEmailClick
 
         )
     }
@@ -60,14 +61,16 @@ fun ForgetPasswordScreenLayout(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(horizontal = 24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(horizontal = 32.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
 
     ){
-        Spacer(modifier = Modifier.height(160.dp))
+
         EmailTextField(
             value = uiState.email,
-            onValueChange = onEmailInput
+            onValueChange = onEmailInput,
+            placeholder = "Enter your email"
         )
         Spacer(modifier = Modifier.height(24.dp))
         PrimaryButton(

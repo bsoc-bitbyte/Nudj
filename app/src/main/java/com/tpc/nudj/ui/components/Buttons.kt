@@ -124,7 +124,7 @@ fun TertiaryButton(
                 textDecoration = TextDecoration.Underline
             ),
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier
         )
     }
 }

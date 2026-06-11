@@ -5,6 +5,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,9 +47,7 @@ import com.tpc.nudj.ui.components.NudjTopAppBar
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
-    onLoginClick: () -> Unit = {},
-    onForgotPasswordClick: () -> Unit = {},
-    onGoogleClick: () -> Unit ={}
+
 
 ) {
     Scaffold(
@@ -68,46 +67,46 @@ fun LoginScreen(
         onPasswordInput = { pass ->
             viewModel.onPasswordChange(pass)
         },
-        onForgotPasswordClick = onForgotPasswordClick,
-        onLoginClick = onLoginClick,
-        onGoogleClick = onGoogleClick
+        onForgotPasswordClick = viewModel::onForgotPasswordClick,
+        onLoginClick = viewModel::onLoginClick,
+        onGoogleClick = viewModel::onGoogleClick,
+        onPasswordVisibilityToggle = viewModel::togglePasswordVisibility,
     )
 }
 }
 @Composable
 fun LoginScreenLayout(
+    uiState: LoginUiState,
     modifier: Modifier = Modifier,
-    uiState :LoginUiState,
     onEmailInput: (String) -> Unit,
     onPasswordInput: (String) -> Unit,
+    onPasswordVisibilityToggle: () -> Unit,
     onForgotPasswordClick: () -> Unit,
     onLoginClick: () -> Unit,
-    onGoogleClick: () -> Unit,
+    onGoogleClick: () -> Unit
 ) {
-    var passwordVisible by remember {
-        mutableStateOf(false)
-    }
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.height(140.dp))
+
         EmailTextField(
             value = uiState.email,
-            onValueChange = onEmailInput
+            onValueChange = onEmailInput,
+            placeholder= "Enter your email"
         )
         Spacer(modifier = Modifier.height(16.dp))
 
         PasswordTextField(
             value = uiState.password,
             onValueChange = onPasswordInput,
-            passwordVisible = passwordVisible,
-            onPasswordVisibilityToggle = {
-                passwordVisible = !passwordVisible
-            }
+            passwordVisible = uiState.passwordVisible,
+            placeholder = "Enter your password",
+            onPasswordVisibilityToggle = onPasswordVisibilityToggle
         )
             TertiaryButton(
                 text = "Forgot Password?",
@@ -171,7 +170,8 @@ private fun LoginScreenLayoutPreview() {
         onPasswordInput = {},
         onForgotPasswordClick = {},
         onLoginClick = {},
-        onGoogleClick = {}
+        onGoogleClick = {},
+        onPasswordVisibilityToggle = {}
     )
 }
 

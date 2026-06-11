@@ -72,12 +72,14 @@ fun NudjTextField(
 }
 
 @Composable
-fun EmailTextField(value: String, onValueChange: (String) -> Unit) {
+fun EmailTextField(value: String, onValueChange: (String) -> Unit,
+                   placeholder: String = "") {
     NudjTextField(
         value = value,
         onValueChange = onValueChange,
         label = "Email",
-        keyboardType = KeyboardType.Email
+        keyboardType = KeyboardType.Email,
+        placeholder = placeholder,
     )
 }
 
@@ -86,12 +88,14 @@ fun PasswordTextField(
     value: String,
     onValueChange: (String) -> Unit,
     passwordVisible: Boolean,
-    onPasswordVisibilityToggle: () -> Unit
+    onPasswordVisibilityToggle: () -> Unit,
+    placeholder: String = ""
 ) {
     NudjTextField(
         value = value,
         onValueChange = onValueChange,
         label = "Password",
+        placeholder = placeholder,
         isPassword = !passwordVisible,
         keyboardType = KeyboardType.Password,
         trailingIcon = {

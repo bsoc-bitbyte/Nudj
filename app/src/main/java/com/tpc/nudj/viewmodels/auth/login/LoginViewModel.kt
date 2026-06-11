@@ -25,6 +25,19 @@ class LoginViewModel @Inject constructor() : ViewModel() {
             it.copy(password = password)
         }
 
+
     }
+    fun togglePasswordVisibility() {
+        _loginUiState.update {
+            it.copy(
+                passwordVisible = !it.passwordVisible
+            )
+        }
+    }
+    fun onLoginClick() {}
+
+    fun onForgotPasswordClick() {}
+
+    fun onGoogleClick() {}
 
 }
