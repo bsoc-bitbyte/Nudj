@@ -1,12 +1,15 @@
 package com.tpc.nudj.viewmodels.auth.login
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.tpc.nudj.ui.screen.auth.login.LoginUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,7 +37,13 @@ class LoginViewModel @Inject constructor() : ViewModel() {
             )
         }
     }
-    fun onLoginClick() {}
+    fun onLoginClick() {
+//        viewModelScope.launch {
+//            _loginUiState.update { it.copy(isLoading = true) }
+//            delay(2000)
+//            _loginUiState.update { it.copy(isLoading = false) }
+//        }
+    }
 
     fun onForgotPasswordClick() {}
 

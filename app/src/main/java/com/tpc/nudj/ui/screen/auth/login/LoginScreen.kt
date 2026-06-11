@@ -42,6 +42,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.tpc.nudj.ui.components.NudjTopAppBar
+import com.tpc.nudj.ui.components.mock.LoadingIndicator
 
 
 @Composable
@@ -57,22 +58,24 @@ fun LoginScreen(
             )
         }
     ) { paddingValues ->
-    val uiState by viewModel.loginUiState.collectAsState()
-    LoginScreenLayout(
-        modifier = Modifier.padding(paddingValues),
-        uiState = uiState,
-        onEmailInput = { email ->
-            viewModel.onEmailChange(email)
-        },
-        onPasswordInput = { pass ->
-            viewModel.onPasswordChange(pass)
-        },
-        onForgotPasswordClick = viewModel::onForgotPasswordClick,
-        onLoginClick = viewModel::onLoginClick,
-        onGoogleClick = viewModel::onGoogleClick,
-        onPasswordVisibilityToggle = viewModel::togglePasswordVisibility,
-    )
-}
+        val uiState by viewModel.loginUiState.collectAsState()
+        LoadingIndicator(isLoading = uiState.isLoading) {
+            LoginScreenLayout(
+                modifier = Modifier.padding(paddingValues),
+                uiState = uiState,
+                onEmailInput = { email ->
+                    viewModel.onEmailChange(email)
+                },
+                onPasswordInput = { pass ->
+                    viewModel.onPasswordChange(pass)
+                },
+                onForgotPasswordClick = viewModel::onForgotPasswordClick,
+                onLoginClick = viewModel::onLoginClick,
+                onGoogleClick = viewModel::onGoogleClick,
+                onPasswordVisibilityToggle = viewModel::togglePasswordVisibility,
+            )
+        }
+    }
 }
 @Composable
 fun LoginScreenLayout(
