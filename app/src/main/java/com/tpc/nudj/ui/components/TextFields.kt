@@ -58,7 +58,7 @@ fun NudjTextField(
             shape = RoundedCornerShape(12.dp),
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
-            visualTransformation = if (isPassword) PasswordVisualTransformation(mask = '*') else VisualTransformation.None,
+            visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             textStyle = MaterialTheme.typography.bodyLarge,
             colors = OutlinedTextFieldDefaults.colors(
@@ -86,6 +86,7 @@ fun EmailTextField(value: String, onValueChange: (String) -> Unit,
 @Composable
 fun PasswordTextField(
     value: String,
+    label: String = "password",
     onValueChange: (String) -> Unit,
     passwordVisible: Boolean,
     onPasswordVisibilityToggle: () -> Unit,
@@ -94,7 +95,7 @@ fun PasswordTextField(
     NudjTextField(
         value = value,
         onValueChange = onValueChange,
-        label = "Password",
+        label = label,
         placeholder = placeholder,
         isPassword = !passwordVisible,
         keyboardType = KeyboardType.Password,
