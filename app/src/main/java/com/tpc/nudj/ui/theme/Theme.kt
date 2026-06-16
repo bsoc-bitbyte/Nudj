@@ -60,6 +60,7 @@ fun NudjTheme(
     CompositionLocalProvider(LocalAppColors provides colorScheme) {
         MaterialTheme(
             colorScheme = if (darkTheme) darkColorScheme() else lightColorScheme(),
+            typography = appTypography(),
             content = content
         )
     }

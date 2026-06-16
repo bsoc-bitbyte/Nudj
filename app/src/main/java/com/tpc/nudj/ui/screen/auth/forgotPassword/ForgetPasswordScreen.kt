@@ -25,6 +25,7 @@ import com.tpc.nudj.ui.components.NudjTopAppBar
 import com.tpc.nudj.ui.components.PrimaryButton
 import com.tpc.nudj.ui.screen.auth.login.LoginScreenLayout
 import com.tpc.nudj.ui.screen.auth.login.LoginUiState
+import com.tpc.nudj.ui.theme.NudjTheme
 import com.tpc.nudj.viewmodels.auth.forgotPassword.ForgotPasswordViewModel
 
 @Composable
@@ -90,10 +91,12 @@ fun ForgetPasswordScreenLayout(
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ForgetPasswordScreenLayoutPreview() {
-    ForgetPasswordScreenLayout(
-        modifier = Modifier,
-        uiState = ForgotPasswordUiState(),
-        onEmailInput = {},
-        onSendEmailClick = {}
-    )
+    NudjTheme {
+        ForgetPasswordScreenLayout(
+            modifier = Modifier,
+            uiState = ForgotPasswordUiState(),
+            onEmailInput = {},
+            onSendEmailClick = {}
+        )
+    }
 }

@@ -166,16 +166,18 @@ fun LoginScreenLayout(
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun LoginScreenLayoutPreview() {
-    LoginScreenLayout(
-        modifier = Modifier,
-        uiState = LoginUiState(),
-        onEmailInput = {},
-        onPasswordInput = {},
-        onForgotPasswordClick = {},
-        onLoginClick = {},
-        onGoogleClick = {},
-        onPasswordVisibilityToggle = {}
-    )
+    NudjTheme {
+        LoginScreenLayout(
+            modifier = Modifier,
+            uiState = LoginUiState(),
+            onEmailInput = {},
+            onPasswordInput = {},
+            onForgotPasswordClick = {},
+            onLoginClick = {},
+            onGoogleClick = {},
+            onPasswordVisibilityToggle = {}
+        )
+    }
 }
 
 
