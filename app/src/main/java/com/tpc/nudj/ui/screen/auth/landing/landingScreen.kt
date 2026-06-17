@@ -1,4 +1,4 @@
-package com.tpc.nudj.ui.screen.auth.landingAndSplash
+package com.tpc.nudj.ui.screen.auth.landing
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -56,7 +56,7 @@ fun LoadingScreenLayout(
             contentDescription = "Nudj",
             modifier = Modifier
                 .fillMaxWidth(0.6f)
-               .weight(0.3f)
+                .weight(0.3f)
         )
         Text(
             text = "College Events Simplified.",
@@ -65,7 +65,7 @@ fun LoadingScreenLayout(
             color = LocalAppColors.current.primaryButtonColor,
             textAlign = TextAlign.Center,
 
-        )
+            )
         Spacer(modifier = Modifier.weight(0.4f))
         PrimaryButton(
             text = "Let's get started!",
@@ -88,8 +88,8 @@ fun LoadingScreenLayout(
 private fun LoadingScreenLayoutPreview() {
     NudjTheme {
 
-LoadingScreenLayout(
-    onLandingScreenClick = {}
-)
+        LoadingScreenLayout(
+            onLandingScreenClick = {}
+        )
     }
 }

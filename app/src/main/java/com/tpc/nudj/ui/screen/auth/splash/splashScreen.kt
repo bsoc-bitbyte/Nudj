@@ -1,4 +1,4 @@
-package com.tpc.nudj.ui.screen.auth.landingAndSplash
+package com.tpc.nudj.ui.screen.auth.splash
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
