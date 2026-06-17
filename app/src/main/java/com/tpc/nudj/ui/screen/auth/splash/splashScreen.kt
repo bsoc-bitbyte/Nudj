@@ -31,7 +31,7 @@ fun SplashScreenLayout(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Spacer(modifier = Modifier.weight(0.5f))
+
         Image(
             painter = painterResource(R.drawable.splashscreenmonkey),
             contentDescription = "Nudj monkey",
@@ -50,7 +50,7 @@ fun SplashScreenLayout(
                 .height(80.dp),
             contentScale = ContentScale.Fit
         )
-        Spacer(modifier = Modifier.weight(0.3f))
+        Spacer(modifier = Modifier.weight(0.7f))
     }
 }
 
