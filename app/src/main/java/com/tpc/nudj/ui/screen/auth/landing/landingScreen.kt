@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusOrder
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -62,6 +63,7 @@ fun LoadingScreenLayout(
             text = "College Events Simplified.",
             modifier = Modifier.fillMaxWidth()
                 .weight(0.1f),
+            fontWeight = FontWeight.ExtraBold,
             color = LocalAppColors.current.primaryButtonColor,
             textAlign = TextAlign.Center,
 
