@@ -1,14 +1,13 @@
 package com.tpc.nudj.ui.components
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -19,7 +18,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tpc.nudj.ui.theme.NudjTheme
-import com.tpc.nudj.ui.theme.Purple80
+import com.tpc.nudj.ui.theme.LocalAppColors
 
 // Primary Button
 @Composable
@@ -27,19 +26,29 @@ fun PrimaryButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
-    val isSystemDark = isSystemInDarkTheme()
-    val buttonColor = if (isSystemDark) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.primary
-    val textColor = if (isSystemDark) MaterialTheme.colorScheme.onSecondary else MaterialTheme.colorScheme.onPrimary
+    val colors = LocalAppColors.current
+    val buttonColor = colors.primaryButtonColor
+    val textColor = colors.primaryButtonTextColor
     val disabledBackgroundColor = buttonColor.copy(alpha = 0.6f)
     val disabledTextColor = textColor.copy(alpha = 0.6f)
+    val buttonModifier =
+       // if (hasBorder) {
+          //  modifier.border(
+           //     width = 1.dp,
+           //     color = colors.buttonBorderColor,
+            //    shape = RoundedCornerShape(16.dp)
+           // )
+       // } else {
+          //  modifier
+       // }
 
     Button(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        shape = RoundedCornerShape(50),
+        shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = buttonColor,
             contentColor = textColor,
@@ -68,24 +77,23 @@ fun SecondaryButton(
     enabled: Boolean = true,
 
 ) {
-    val isSystemDark = isSystemInDarkTheme()
-    val buttonColor =
-        if (isSystemDark) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.primary
-    val disabledTextColor = buttonColor.copy(alpha = 0.6f)
+    val colors = LocalAppColors.current
+    val buttonColor = colors.secondaryButtonColor
+    //val disabledTextColor = buttonColor.copy(alpha = 0.6f)
 
 
     OutlinedButton(
         onClick = onClick,
         enabled = enabled,
         modifier = modifier,
-        shape = RoundedCornerShape(50),
+        shape = RoundedCornerShape(size = 16.dp),
         border = BorderStroke(
             1.dp,
-            buttonColor
+            colors.buttonBorderColor
         ),
         colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = buttonColor,
-            disabledContentColor = disabledTextColor
+            contentColor = colors.secondaryButtonTextColor,
+            disabledContentColor = colors.secondaryButtonTextColor.copy(alpha = 0.6f)
         )
     ) {
         Text(
@@ -105,8 +113,8 @@ fun TertiaryButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
-    val isSystemDark = isSystemInDarkTheme()
-    val textColor = if (isSystemDark) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.primary
+    val colors = LocalAppColors.current
+    val textColor = colors.tertiaryButtonColor
     val disabledTextColor = textColor.copy(alpha = 0.6f)
     TextButton(
         onClick = onClick,
