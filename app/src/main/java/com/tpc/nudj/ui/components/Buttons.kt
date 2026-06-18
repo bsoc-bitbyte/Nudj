@@ -1,7 +1,6 @@
 package com.tpc.nudj.ui.components
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -27,44 +26,39 @@ fun PrimaryButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    hasBorder: Boolean = false,
 ) {
     val colors = LocalAppColors.current
     val buttonColor = colors.primaryButtonColor
     val textColor = colors.primaryButtonTextColor
     val disabledBackgroundColor = buttonColor.copy(alpha = 0.6f)
     val disabledTextColor = textColor.copy(alpha = 0.6f)
-    val buttonModifier =
-       // if (hasBorder) {
-          //  modifier.border(
-           //     width = 1.dp,
-           //     color = colors.buttonBorderColor,
-            //    shape = RoundedCornerShape(16.dp)
-           // )
-       // } else {
-          //  modifier
-       // }
 
-    Button(
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
-        shape = RoundedCornerShape(16.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = buttonColor,
-            contentColor = textColor,
-            disabledContainerColor = disabledBackgroundColor,
-            disabledContentColor = disabledTextColor
-        ),
+        Button(
+            onClick = onClick,
+            modifier = modifier,
+            enabled = enabled,
+            shape = RoundedCornerShape(8.dp),
+            border =
+                if (hasBorder)
+                    BorderStroke(2.dp, colors.buttonBorderColor)
+                else null,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = buttonColor,
+                contentColor = textColor,
+                disabledContainerColor = disabledBackgroundColor,
+                disabledContentColor = disabledTextColor
+            ),
 
-        ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-        )
-    }
+            ) {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            )
+        }
 }
 
 
@@ -78,7 +72,7 @@ fun SecondaryButton(
 
 ) {
     val colors = LocalAppColors.current
-    val buttonColor = colors.secondaryButtonColor
+    //val buttonColor = colors.secondaryButtonColor
     //val disabledTextColor = buttonColor.copy(alpha = 0.6f)
 
 
@@ -86,12 +80,13 @@ fun SecondaryButton(
         onClick = onClick,
         enabled = enabled,
         modifier = modifier,
-        shape = RoundedCornerShape(size = 16.dp),
+        shape = RoundedCornerShape(size = 8.dp),
         border = BorderStroke(
             1.dp,
             colors.buttonBorderColor
         ),
         colors = ButtonDefaults.outlinedButtonColors(
+            containerColor = colors.secondaryButtonColor,
             contentColor = colors.secondaryButtonTextColor,
             disabledContentColor = colors.secondaryButtonTextColor.copy(alpha = 0.6f)
         )
@@ -143,8 +138,9 @@ fun TertiaryButton(
 fun PrimaryButtonPreview() {
     NudjTheme {
         PrimaryButton(
-            text = "Save",
-            onClick = {}
+            text = "Student",
+            onClick = {},
+            hasBorder = true
         )
     }
 }
