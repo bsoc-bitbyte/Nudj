@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -43,13 +44,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.tpc.nudj.ui.components.LoadingIndicator
 import com.tpc.nudj.ui.components.NudjTopAppBar
+import com.tpc.nudj.ui.theme.LocalAppColors
 
 
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
-
-
 ) {
     Scaffold(
         topBar = {
@@ -88,6 +88,8 @@ fun LoginScreenLayout(
     onLoginClick: () -> Unit,
     onGoogleClick: () -> Unit
 ) {
+
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -96,7 +98,6 @@ fun LoginScreenLayout(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
         EmailTextField(
             value = uiState.email,
             onValueChange = onEmailInput,
@@ -115,8 +116,6 @@ fun LoginScreenLayout(
                 text = "Forgot Password?",
                 onClick = onForgotPasswordClick,
                 modifier = Modifier.align(Alignment.Start)
-
-
             )
 
 
