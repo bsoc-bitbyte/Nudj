@@ -1,6 +1,9 @@
 package com.tpc.nudj.ui.components
+
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -12,6 +15,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,37 +33,37 @@ fun PrimaryButton(
     enabled: Boolean = true,
     hasBorder: Boolean = false,
 ) {
-    val colors = LocalAppColors.current
-    val buttonColor = colors.primaryButtonColor
-    val textColor = colors.primaryButtonTextColor
-    val disabledBackgroundColor = buttonColor.copy(alpha = 0.6f)
-    val disabledTextColor = textColor.copy(alpha = 0.6f)
+    val shape = if (hasBorder) RoundedCornerShape(14.dp) else RoundedCornerShape(8.dp)
+    val contentPadding = if (hasBorder) {
+        PaddingValues(horizontal = 24.dp, vertical = 10.dp)
+    } else {
+        ButtonDefaults.ContentPadding
+    }
 
-        Button(
-            onClick = onClick,
-            modifier = modifier,
-            enabled = enabled,
-            shape = RoundedCornerShape(8.dp),
-            border =
-                if (hasBorder)
-                    BorderStroke(2.dp, colors.buttonBorderColor)
-                else null,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = buttonColor,
-                contentColor = textColor,
-                disabledContainerColor = disabledBackgroundColor,
-                disabledContentColor = disabledTextColor
-            ),
+    Button(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        contentPadding = contentPadding,
+        shape = shape,
+        border =
+            if (hasBorder)
+                BorderStroke(1.5.dp, LocalAppColors.current.buttonBorderColor)
+            else null,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = LocalAppColors.current.primaryButtonColor,
+            contentColor = LocalAppColors.current.primaryButtonTextColor,
+            disabledContainerColor = LocalAppColors.current.primaryButtonColor.copy(alpha = 0.6f),
+            disabledContentColor = LocalAppColors.current.primaryButtonTextColor.copy(alpha = 0.6f)
+        ),
 
-            ) {
-            Text(
-                text = text,
-                style = MaterialTheme.typography.bodyLarge,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-            )
-        }
+        ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.titleLarge,
+            textAlign = TextAlign.Center
+        )
+    }
 }
 
 
@@ -70,30 +75,22 @@ fun SecondaryButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 
-) {
-    val colors = LocalAppColors.current
-    //val buttonColor = colors.secondaryButtonColor
-    //val disabledTextColor = buttonColor.copy(alpha = 0.6f)
-
-
+    ) {
     OutlinedButton(
         onClick = onClick,
         enabled = enabled,
         modifier = modifier,
         shape = RoundedCornerShape(size = 8.dp),
-        border = BorderStroke(
-            1.dp,
-            colors.buttonBorderColor
-        ),
+        border = BorderStroke(1.5.dp, LocalAppColors.current.buttonBorderColor),
         colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = colors.secondaryButtonColor,
-            contentColor = colors.secondaryButtonTextColor,
-            disabledContentColor = colors.secondaryButtonTextColor.copy(alpha = 0.6f)
+            containerColor = LocalAppColors.current.secondaryButtonColor,
+            contentColor = LocalAppColors.current.secondaryButtonTextColor,
+            disabledContentColor = LocalAppColors.current.secondaryButtonTextColor.copy(alpha = 0.6f)
         )
     ) {
         Text(
             text = text,
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
@@ -108,26 +105,38 @@ fun TertiaryButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
-    val colors = LocalAppColors.current
-    val textColor = colors.tertiaryButtonColor
-    val disabledTextColor = textColor.copy(alpha = 0.6f)
     TextButton(
         onClick = onClick,
         enabled = enabled,
         modifier = modifier,
         colors = ButtonDefaults.textButtonColors(
             containerColor = Color.Transparent,
-            contentColor = textColor,
-            disabledContentColor = disabledTextColor
+            contentColor = LocalAppColors.current.tertiaryButtonColor,
+            disabledContentColor = LocalAppColors.current.tertiaryButtonColor.copy(alpha = 0.6f)
         )
     ) {
         Text(
             text = text,
             style = MaterialTheme.typography.bodyLarge.copy(
+                fontWeight = FontWeight.Medium,
+                fontStyle = FontStyle.Italic,
                 textDecoration = TextDecoration.Underline
             ),
             textAlign = TextAlign.Center,
             modifier = Modifier
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PrimaryButtonUnborderedPreview() {
+    NudjTheme {
+        PrimaryButton(
+            text = "Login",
+            onClick = {},
+            hasBorder = false,
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }
@@ -156,6 +165,7 @@ fun SecondaryButtonPreview() {
         )
     }
 }
+
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
