@@ -46,4 +46,12 @@ class LoginViewModel @Inject constructor() : ViewModel() {
 
     fun onGoogleClick() {}
 
+    fun onRoleSelected(isStudent: Boolean) {
+        _loginUiState.update {
+            it.copy(isStudent = isStudent)
+        }
+    }
+
+    fun onCreateAccount() {}
+
 }

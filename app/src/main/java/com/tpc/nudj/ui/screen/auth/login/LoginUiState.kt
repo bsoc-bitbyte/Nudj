@@ -6,5 +6,6 @@ data class LoginUiState(
     val toastMessage:String?=null,
     val email:String = "",
     val password:String = "",
-    val passwordVisible: Boolean = false
+    val passwordVisible: Boolean = false,
+    val isStudent : Boolean = true
 )
