@@ -7,5 +7,9 @@ data class LoginUiState(
     val email:String = "",
     val password:String = "",
     val passwordVisible: Boolean = false,
-    val isStudent : Boolean = true
+    val role: Role = Role.STUDENT
 )
+enum class Role{
+    STUDENT,
+    ADMIN
+}

@@ -2,6 +2,7 @@ package com.tpc.nudj.viewmodels.auth.login
 
 import androidx.lifecycle.ViewModel
 import com.tpc.nudj.ui.screen.auth.login.LoginUiState
+import com.tpc.nudj.ui.screen.auth.login.Role
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -46,12 +47,12 @@ class LoginViewModel @Inject constructor() : ViewModel() {
 
     fun onGoogleClick() {}
 
-    fun onRoleSelected(isStudent: Boolean) {
+    fun onRoleSelected(role: Role) {
         _loginUiState.update {
-            it.copy(isStudent = isStudent)
+            it.copy(role = role)
         }
     }
 
-    fun onCreateAccount() {}
+    fun onCreateAccount()  {}
 
 }

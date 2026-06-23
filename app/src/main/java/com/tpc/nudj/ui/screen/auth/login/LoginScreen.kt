@@ -5,6 +5,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -75,8 +76,8 @@ fun LoginScreen(
                 onLoginClick = viewModel::onLoginClick,
                 onGoogleClick = viewModel::onGoogleClick,
                 onPasswordVisibilityToggle = viewModel::togglePasswordVisibility,
-                onRoleSelected = { isStudent ->
-                    viewModel.onRoleSelected(isStudent)
+                onRoleSelected = { role ->
+                    viewModel.onRoleSelected(role)
                 },
                 onCreateAccount = viewModel::onCreateAccount,
             )
@@ -93,7 +94,7 @@ fun LoginScreenLayout(
     onForgotPasswordClick: () -> Unit,
     onLoginClick: () -> Unit,
     onGoogleClick: () -> Unit,
-    onRoleSelected: (Boolean) -> Unit,
+    onRoleSelected: (Role) -> Unit,
     onCreateAccount : () -> Unit
 ) {
     Column(
@@ -123,28 +124,33 @@ fun LoginScreenLayout(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            if (uiState.isStudent==true) {
+            if (uiState.role == Role.STUDENT) {
                 PrimaryButton(
                     text = "Student",
-                    onClick = {onRoleSelected(true)},
+                    onClick = {onRoleSelected(Role.STUDENT)},
                     modifier = Modifier.weight(1f)
                 )
-                Spacer(modifier= Modifier.weight(0.1f))
+
+            } else {
                 SecondaryButton(
+                    text = "Student",
+                    onClick = {onRoleSelected(Role.STUDENT)},
+                    modifier = Modifier.weight(1f)
+                )
+            }
+
+            Spacer(modifier= Modifier.weight(0.1f))
+
+            if (uiState.role == Role.ADMIN) {
+                PrimaryButton(
                     text = "Admin",
-                    onClick = {onRoleSelected(false)},
+                    onClick = {onRoleSelected(Role.ADMIN)},
                     modifier = Modifier.weight(1f)
                 )
             } else {
                 SecondaryButton(
-                    text = "Student",
-                    onClick = {onRoleSelected(true)},
-                    modifier = Modifier.weight(1f)
-                )
-                Spacer(modifier= Modifier.weight(0.1f))
-                PrimaryButton(
                     text = "Admin",
-                    onClick = {onRoleSelected(false)},
+                    onClick = {onRoleSelected(Role.ADMIN)},
                     modifier = Modifier.weight(1f)
                 )
             }
@@ -154,8 +160,7 @@ fun LoginScreenLayout(
 
         Text(
             text = "LOGIN",
-            style = MaterialTheme.typography.bodyLarge,
-            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.titleLarge,
             color = LocalAppColors.current.secondaryButtonTextColor
         )
 
@@ -215,20 +220,21 @@ fun LoginScreenLayout(
             HorizontalDivider(
                 modifier = Modifier.weight(1f),
                 thickness = 1.5.dp,
-                color = Color.Black
+                color = if(isSystemInDarkTheme()) Color.White else Color.Black
             )
 
             Text(
                 text = "OR",
                 modifier = Modifier.padding(horizontal = 16.dp),
                 style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = if(isSystemInDarkTheme()) Color.White else Color.Black
             )
 
             HorizontalDivider(
                 modifier = Modifier.weight(1f),
                 thickness = 1.5.dp,
-                color = Color.Black
+                color = if(isSystemInDarkTheme()) Color.White else Color.Black
             )
         }
 
@@ -240,7 +246,7 @@ fun LoginScreenLayout(
             shape = RoundedCornerShape(8.dp)
         ) {
             Image(
-                painter = painterResource(R.drawable.googleicon),
+                painter = painterResource(R.drawable.google),
                 contentDescription = "Google Icon",
                 modifier = Modifier
                     .size(16.dp)
@@ -250,6 +256,7 @@ fun LoginScreenLayout(
                 text = "Continue with Google",
                 style = MaterialTheme.typography.bodyMedium,
                 color = LocalAppColors.current.secondaryButtonTextColor,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier.weight(1f).wrapContentWidth(Alignment.CenterHorizontally)
             )
         }
@@ -263,7 +270,8 @@ fun LoginScreenLayout(
         ) {
             Text(
                 text = "Don't have an account?",
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold
             )
 
             TertiaryButton(
@@ -275,20 +283,23 @@ fun LoginScreenLayout(
 }
 
 @Preview(showBackground = true)
+@Preview(showBackground = true , uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun LoginScreenLayoutPreview() {
-    LoginScreenLayout(
-        modifier = Modifier,
-        uiState = LoginUiState(),
-        onEmailInput = {},
-        onPasswordInput = {},
-        onForgotPasswordClick = {},
-        onLoginClick = {},
-        onGoogleClick = {},
-        onPasswordVisibilityToggle = {},
-        onRoleSelected = {},
-        onCreateAccount = {}
-    )
+    NudjTheme{
+        LoginScreenLayout(
+            modifier = Modifier,
+            uiState = LoginUiState(),
+            onEmailInput = {},
+            onPasswordInput = {},
+            onForgotPasswordClick = {},
+            onLoginClick = {},
+            onGoogleClick = {},
+            onPasswordVisibilityToggle = {},
+            onRoleSelected = {},
+            onCreateAccount = {}
+        )
+    }
 }
 
 

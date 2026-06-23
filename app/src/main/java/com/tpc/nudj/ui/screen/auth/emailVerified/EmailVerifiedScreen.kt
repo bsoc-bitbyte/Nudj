@@ -1,6 +1,8 @@
 package com.tpc.nudj.ui.screen.auth.emailVerified
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.tpc.nudj.R
 import com.tpc.nudj.ui.components.PrimaryButton
 import com.tpc.nudj.ui.theme.LocalAppColors
+import com.tpc.nudj.ui.theme.NudjTheme
 
 @Composable
 fun EmailVerifiedScreen(
@@ -39,8 +42,10 @@ fun EmailVerifiedScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
+                val imageID = if(isSystemInDarkTheme()) R.drawable.email_verified_dark_theme
+                            else R.drawable.emailverified
                 Image(
-                    painter = painterResource(R.drawable.emailverified),
+                    painter = painterResource(imageID),
                     contentDescription = "Email Verified",
                     modifier = Modifier
                         .width(250.dp)
@@ -62,7 +67,10 @@ fun EmailVerifiedScreen(
 }
 
 @Preview(showBackground = true)
+@Preview(showBackground = true , uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun EmailVerifiedScreenPreview() {
-    EmailVerifiedScreen()
+    NudjTheme {
+        EmailVerifiedScreen()
+    }
 }
