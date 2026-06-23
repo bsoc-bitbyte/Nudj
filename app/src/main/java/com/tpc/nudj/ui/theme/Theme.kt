@@ -24,31 +24,34 @@ data class AppColors(
     val buttonBorderColor: Color,
     val textFieldColor: Color,
     val textFieldBorderColor: Color,
+    val topBarColor: Color
 )
-private val DarkColorScheme = AppColors(
-    background = LightBlue,
-    primaryButtonColor = DarkBlue,
+private val LightColorScheme = AppColors(
+    background = LightThemeBackgroundBlue,
+    primaryButtonColor = LightThemeDarkBlue,
     secondaryButtonColor = Color.White,
-    tertiaryButtonColor = SeaBlue,
+    tertiaryButtonColor = LightThemeSeaBlue,
     primaryButtonTextColor = Color.White,
-    secondaryButtonTextColor = DarkBlue,
-    surfaceColor = Gray,
-    buttonBorderColor = Gray,
+    secondaryButtonTextColor = LightThemeDarkBlue,
+    surfaceColor = LightThemeCardLightBlue,
+    buttonBorderColor = LightThemeGray,
     textFieldColor = Color.White,
-    textFieldBorderColor = Gray
+    textFieldBorderColor = LightThemeGray,
+    topBarColor = Color(0xFF8CA1AF)
 )
 
-private val LightColorScheme = AppColors(
-    background = LightBlue,
-    primaryButtonColor = DarkBlue,
+private val DarkColorScheme = AppColors(
+    background = DarkThemeBackgroundBlue,
+    primaryButtonColor = LightThemeDarkBlue,
     secondaryButtonColor = Color.White,
-    tertiaryButtonColor = SeaBlue,
+    tertiaryButtonColor = DarkThemeSeaBlue,
     primaryButtonTextColor = Color.White,
-    secondaryButtonTextColor = DarkBlue,
-    surfaceColor = Gray,
-    buttonBorderColor = Gray,
+    secondaryButtonTextColor = LightThemeDarkBlue,
+    surfaceColor = LightThemeCardLightBlue,
+    buttonBorderColor = LightThemeGray,
     textFieldColor = Color.White,
-    textFieldBorderColor = Gray
+    textFieldBorderColor = LightThemeGray,
+    topBarColor = Color(0xFF8CA1AF)
 )
 
 @Composable
