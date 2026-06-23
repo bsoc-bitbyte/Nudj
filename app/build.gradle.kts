@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -7,13 +10,21 @@ plugins {
     alias(libs.plugins.hilt)
     //ksp
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google.gms.google.services)
 }
+
+val localPropertiesFile = rootProject.file("local.properties")
 
 android {
     compileSdk = 37
     namespace = "com.tpc.nudj"
 
     defaultConfig {
+        val localProperties = Properties()
+            .takeIf { localPropertiesFile.exists() }
+            ?.apply { load(FileInputStream(localPropertiesFile)) }
+        fun addStringResource(name :String) = resValue("string",name,localProperties?.getProperty(name).toString())
+        addStringResource("WEB_CLIENT_ID")
         applicationId = "com.tpc.nudj"
         minSdk = 24
         targetSdk = 36
@@ -47,6 +58,7 @@ android {
 
     buildFeatures {
         compose = true
+        resValues = true
     }
 }
 
@@ -61,6 +73,12 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
