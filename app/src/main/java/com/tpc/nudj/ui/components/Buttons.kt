@@ -4,7 +4,6 @@ import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -33,7 +32,7 @@ fun PrimaryButton(
     enabled: Boolean = true,
     hasBorder: Boolean = false,
 ) {
-    val shape = if (hasBorder) RoundedCornerShape(14.dp) else RoundedCornerShape(8.dp)
+    val shape = RoundedCornerShape(8.dp)
     val contentPadding = if (hasBorder) {
         PaddingValues(horizontal = 24.dp, vertical = 10.dp)
     } else {
@@ -46,10 +45,8 @@ fun PrimaryButton(
         enabled = enabled,
         contentPadding = contentPadding,
         shape = shape,
-        border =
-            if (hasBorder)
-                BorderStroke(1.5.dp, LocalAppColors.current.buttonBorderColor)
-            else null,
+        border = if (hasBorder) BorderStroke(1.5.dp, LocalAppColors.current.buttonBorderColor)
+        else null,
         colors = ButtonDefaults.buttonColors(
             containerColor = LocalAppColors.current.primaryButtonColor,
             contentColor = LocalAppColors.current.primaryButtonTextColor,
@@ -59,9 +56,7 @@ fun PrimaryButton(
 
         ) {
         Text(
-            text = text,
-            style = MaterialTheme.typography.titleLarge,
-            textAlign = TextAlign.Center
+            text = text, style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center
         )
     }
 }
@@ -74,8 +69,8 @@ fun SecondaryButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-
-    ) {
+) {
+    val contentPadding = PaddingValues(horizontal = 24.dp, vertical = 10.dp)
     OutlinedButton(
         onClick = onClick,
         enabled = enabled,
@@ -86,13 +81,13 @@ fun SecondaryButton(
             containerColor = LocalAppColors.current.secondaryButtonColor,
             contentColor = LocalAppColors.current.secondaryButtonTextColor,
             disabledContentColor = LocalAppColors.current.secondaryButtonTextColor.copy(alpha = 0.6f)
-        )
+        ),
+        contentPadding = contentPadding,
     ) {
         Text(
             text = text,
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(horizontal = 16.dp)
         )
     }
 }
@@ -100,10 +95,7 @@ fun SecondaryButton(
 // Tertiary Button
 @Composable
 fun TertiaryButton(
-    text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true
 ) {
     TextButton(
         onClick = onClick,
@@ -116,14 +108,11 @@ fun TertiaryButton(
         )
     ) {
         Text(
-            text = text,
-            style = MaterialTheme.typography.bodyLarge.copy(
+            text = text, style = MaterialTheme.typography.bodyLarge.copy(
                 fontWeight = FontWeight.Medium,
                 fontStyle = FontStyle.Italic,
                 textDecoration = TextDecoration.Underline
-            ),
-            textAlign = TextAlign.Center,
-            modifier = Modifier
+            ), textAlign = TextAlign.Center, modifier = Modifier
         )
     }
 }
@@ -133,10 +122,7 @@ fun TertiaryButton(
 fun PrimaryButtonUnborderedPreview() {
     NudjTheme {
         PrimaryButton(
-            text = "Login",
-            onClick = {},
-            hasBorder = false,
-            modifier = Modifier.fillMaxWidth()
+            text = "Login", onClick = {}, hasBorder = false, modifier = Modifier.fillMaxWidth()
         )
     }
 }
@@ -147,9 +133,7 @@ fun PrimaryButtonUnborderedPreview() {
 fun PrimaryButtonPreview() {
     NudjTheme {
         PrimaryButton(
-            text = "Student",
-            onClick = {},
-            hasBorder = true
+            text = "Student", onClick = {}, hasBorder = true
         )
     }
 }
@@ -160,9 +144,7 @@ fun PrimaryButtonPreview() {
 fun SecondaryButtonPreview() {
     NudjTheme {
         SecondaryButton(
-            text = "Edit",
-            onClick = {}
-        )
+            text = "Edit", onClick = {})
     }
 }
 
@@ -172,8 +154,6 @@ fun SecondaryButtonPreview() {
 fun TertiaryButtonPreview() {
     NudjTheme {
         TertiaryButton(
-            text = "Resend Email",
-            onClick = {}
-        )
+            text = "Resend Email", onClick = {})
     }
 }

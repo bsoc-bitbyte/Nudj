@@ -15,7 +15,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,17 +34,13 @@ import com.tpc.nudj.ui.theme.LocalAppColors
 fun NudjTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    label: String,
     modifier: Modifier = Modifier,
-    placeholder: String = "",
+    placeholder: String,
     isPassword: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null
 ) {
-
-    val colors = LocalAppColors.current
-
     Column(modifier = modifier.fillMaxWidth()) {
 
         OutlinedTextField(
@@ -53,7 +48,7 @@ fun NudjTextField(
             onValueChange = onValueChange,
             placeholder = {
                 Text(
-                    text = placeholder.ifEmpty { label },
+                    text = placeholder,
                     style = MaterialTheme.typography.bodyLarge
                 )
             },
@@ -65,40 +60,40 @@ fun NudjTextField(
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             textStyle = MaterialTheme.typography.bodyLarge,
             colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = colors.textFieldColor,
-                unfocusedContainerColor = colors.textFieldColor,
-                focusedBorderColor = colors.textFieldBorderColor,
-                unfocusedBorderColor = colors.textFieldBorderColor,
+                focusedContainerColor = LocalAppColors.current.textFieldColor,
+                unfocusedContainerColor = LocalAppColors.current.textFieldColor,
+                focusedBorderColor = LocalAppColors.current.textFieldBorderColor,
+                unfocusedBorderColor = LocalAppColors.current.textFieldBorderColor,
             )
         )
     }
 }
 
 @Composable
-fun EmailTextField(value: String, onValueChange: (String) -> Unit,
-                   placeholder: String = "") {
+fun EmailTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String = "Institute Mail id"
+) {
     NudjTextField(
         value = value,
         onValueChange = onValueChange,
-        label = "Insititute Mail id",
-        keyboardType = KeyboardType.Email,
         placeholder = placeholder,
+        keyboardType = KeyboardType.Email
     )
 }
 
 @Composable
 fun PasswordTextField(
     value: String,
-    label: String = "Password",
     onValueChange: (String) -> Unit,
     passwordVisible: Boolean,
     onPasswordVisibilityToggle: () -> Unit,
-    placeholder: String = ""
+    placeholder: String = "Password"
 ) {
     NudjTextField(
         value = value,
         onValueChange = onValueChange,
-        label = label,
         placeholder = placeholder,
         isPassword = !passwordVisible,
         keyboardType = KeyboardType.Password,
@@ -121,18 +116,15 @@ fun PasswordTextField(
 @Composable
 fun NudjTextFieldPreview() {
     var text by rememberSaveable { mutableStateOf("") }
-    val colors = LocalAppColors.current
 
     NudjTheme {
-        Surface(color = colors.background) {
             Box(modifier = Modifier.padding(16.dp)) {
                 NudjTextField(
                     value = text,
                     onValueChange = { text = it },
-                    label = "Club Name"
+                    placeholder = "Club Name"
                 )
             }
-        }
     }
 }
 
@@ -141,14 +133,11 @@ fun NudjTextFieldPreview() {
 @Composable
 fun EmailTextFieldPreview() {
     var emailText by rememberSaveable { mutableStateOf("") }
-    val colors = LocalAppColors.current
 
     NudjTheme {
-        Surface(color = colors.background) {
             Box(modifier = Modifier.padding(16.dp)) {
                 EmailTextField(value = emailText, onValueChange = { emailText = it })
             }
-        }
     }
 }
 
@@ -158,10 +147,7 @@ fun EmailTextFieldPreview() {
 fun PasswordTextFieldPreview() {
     var passwordText by rememberSaveable { mutableStateOf("") }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
-    val colors = LocalAppColors.current
-
     NudjTheme {
-        Surface(color = colors.background) {
             Box(modifier = Modifier.padding(16.dp)) {
                 PasswordTextField(
                     value = passwordText,
@@ -170,6 +156,5 @@ fun PasswordTextFieldPreview() {
                     onPasswordVisibilityToggle = { passwordVisible = !passwordVisible }
                 )
             }
-        }
     }
 }

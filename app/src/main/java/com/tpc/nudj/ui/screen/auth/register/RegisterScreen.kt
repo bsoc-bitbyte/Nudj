@@ -3,7 +3,7 @@ package com.tpc.nudj.ui.screen.auth.register
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.CircularProgressIndicator
+//import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -19,9 +19,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+//import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tpc.nudj.R
-import com.tpc.nudj.model.AuthResult
+//import com.tpc.nudj.model.AuthResult
 import com.tpc.nudj.ui.components.EmailTextField
 import com.tpc.nudj.ui.components.LoadingIndicator
 import com.tpc.nudj.ui.components.NudjTopAppBar
@@ -97,7 +97,7 @@ fun RegisterScreenLayout(
                 PasswordTextField(
                     value = uiState.password,
                     onValueChange = onPasswordInput,
-                    label = "Password",
+                    //label = "Password",
                     placeholder = "Password",
                     passwordVisible = isPasswordVisible,
                     onPasswordVisibilityToggle = onPasswordVisibilityToggle
@@ -106,7 +106,7 @@ fun RegisterScreenLayout(
                 PasswordTextField(
                     value = uiState.confirmPassword,
                     onValueChange = onConfirmPasswordInput,
-                    label = "Confirm Password",
+                    //label = "Confirm Password",
                     placeholder = "Confirm Password",
                     passwordVisible = isConfirmPasswordVisible,
                     onPasswordVisibilityToggle = onConfirmPasswordVisibilityToggle
