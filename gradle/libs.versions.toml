@@ -18,9 +18,6 @@ hiltCompiler = "1.2.0"
 ksp = "2.1.10-1.0.31"
 material3Lint = "1.4.0"
 uiTextGoogleFonts = "1.11.2"
-uiText = "1.11.3"
-material3 = "1.4.0"
-foundation = "1.11.3"
 googleGmsGoogleServices = "4.5.0"
 firebaseAuth = "24.1.0"
 credentials = "1.6.0"
@@ -55,9 +52,6 @@ androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref =
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 androidx-compose-material3-lint = { group = "androidx.compose.material3", name = "material3-lint", version.ref = "material3Lint" }
 androidx-compose-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
-androidx-compose-ui-text = { group = "androidx.compose.ui", name = "ui-text", version.ref = "uiText" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
-androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 androidx-credentials = { group = "androidx.credentials", name = "credentials", version.ref = "credentials" }
 androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
