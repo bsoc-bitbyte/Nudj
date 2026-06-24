@@ -27,9 +27,7 @@ class MainActivity : ComponentActivity() {
                             DemoScreen()
                         }
                     }
-
                 )
-
             }
         }
     }
