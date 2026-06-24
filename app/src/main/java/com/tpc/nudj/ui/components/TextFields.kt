@@ -28,6 +28,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tpc.nudj.ui.theme.NudjTheme
+import androidx.compose.material.icons.outlined.Mail
+import androidx.compose.material.icons.outlined.Lock
 import com.tpc.nudj.ui.theme.LocalAppColors
 
 @Composable
@@ -79,6 +81,12 @@ fun EmailTextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = placeholder,
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.Mail,
+                contentDescription = "Email icon"
+            )
+        },
         keyboardType = KeyboardType.Email
     )
 }
@@ -95,6 +103,12 @@ fun PasswordTextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = placeholder,
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.Lock,
+                contentDescription = "Password icon"
+            )
+        },
         isPassword = !passwordVisible,
         keyboardType = KeyboardType.Password,
         trailingIcon = {
