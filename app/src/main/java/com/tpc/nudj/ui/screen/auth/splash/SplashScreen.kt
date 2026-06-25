@@ -1,7 +1,6 @@
 package com.tpc.nudj.ui.screen.auth.splash
 
 import android.content.res.Configuration
-import android.window.SplashScreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -20,7 +19,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tpc.nudj.R
-import com.tpc.nudj.ui.components.NudjTopAppBar
 import com.tpc.nudj.ui.theme.LocalAppColors
 import com.tpc.nudj.ui.theme.NudjTheme
 
@@ -61,7 +59,7 @@ fun SplashScreenLayout(
         )
 
         Image(
-            painter = painterResource(if (darkTheme) R.drawable.welcome_dark_theme else R.drawable.splash_screen_welcome),
+            painter = painterResource(if (darkTheme) R.drawable.welcome_dark_theme else R.drawable.welcome),
             contentDescription = "Welcome",
             modifier = Modifier
                 .fillMaxWidth(0.8f)
