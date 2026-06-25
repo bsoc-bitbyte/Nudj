@@ -46,10 +46,9 @@ fun LandingScreen(
 
 @Composable
 fun LoadingScreenLayout(
-    darkTheme: Boolean = isSystemInDarkTheme(),
     onLandingScreenClick: () -> Unit
 ) {
-
+    var darkTheme : Boolean = isSystemInDarkTheme()
     Column(
         modifier = Modifier,
         verticalArrangement = Arrangement.Center,

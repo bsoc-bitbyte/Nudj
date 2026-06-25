@@ -37,9 +37,9 @@ fun SplashScreen() {
 
 @Composable
 fun SplashScreenLayout(
-    darkTheme: Boolean = isSystemInDarkTheme()
-) {
 
+) {
+ var darkTheme : Boolean = isSystemInDarkTheme()
     Column(
         modifier = Modifier
             .fillMaxSize()
