@@ -1,6 +1,7 @@
 package com.tpc.nudj.ui.screen.auth.splash
 
 import android.content.res.Configuration
+import android.window.SplashScreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,9 +24,21 @@ import com.tpc.nudj.ui.theme.LocalAppColors
 import com.tpc.nudj.ui.theme.NudjTheme
 
 @Composable
+fun SplashScreen(){
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize(),
+        containerColor = LocalAppColors.current.background,
+
+    ) { paddingValues ->
+        SplashScreenLayout()
+    }
+}
+
+
+@Composable
 fun SplashScreenLayout() {
-    Scaffold()
-    { paddingValues ->
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -54,7 +67,6 @@ fun SplashScreenLayout() {
             )
             Spacer(modifier = Modifier.weight(0.7f))
         }
-    }
 }
 
 @Preview(showBackground = true)
@@ -62,7 +74,7 @@ fun SplashScreenLayout() {
 @Composable
 private fun SplashScreenLayoutPreview() {
     NudjTheme {
-        SplashScreenLayout()
+        SplashScreen()
 
     }
 }
