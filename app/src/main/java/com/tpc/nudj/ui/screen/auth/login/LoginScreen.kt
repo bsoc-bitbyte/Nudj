@@ -304,5 +304,3 @@ private fun LoginScreenLayoutPreview() {
         )
     }
 }
-
-
