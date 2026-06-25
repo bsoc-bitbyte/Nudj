@@ -15,15 +15,13 @@ val Pink40 = Color(0xFF7D5260)
 // App Light Theme colors
 val LightThemeBackgroundBlue = Color(0xFFEAF6FF)
 val LightThemeDarkBlue = Color(0xFF093958)
-val Yellow = Color(0xFFFFCE2D)
 val LightThemeGray = Color(0xFFA0B5C2)
-val LightThemeCardLightBlue = Color(0xFFCADEEA)
+val LightThemeCardLightBlue = Color(0xFFB6D1E1)
 val LightThemeSeaBlue = Color(0xFF5A8EEF)
 
 
 // App Dark theme colors
 val DarkThemeBackgroundBlue = Color(0xFF041F30)
+val DarkThemeDarkBlue = Color(0xFF004570)
+val DarkThemeSecondaryButtonColor = Color(0xFFE0E9EF)
 val DarkThemeSeaBlue = Color(0xFF99BBFA)
-val DarkThemeDarkBlue = Color
-val DarkThemeGray = Color
-val DarkThemeCardLightBlue = Color

@@ -36,21 +36,21 @@ private val LightColorScheme = AppColors(
     surfaceColor = LightThemeCardLightBlue,
     buttonBorderColor = LightThemeGray,
     textFieldColor = Color.White,
-    textFieldBorderColor = LightThemeGray,
+    textFieldBorderColor = DarkThemeSecondaryButtonColor,
     topBarColor = Color(0xFF8CA1AF)
 )
 
 private val DarkColorScheme = AppColors(
     background = DarkThemeBackgroundBlue,
-    primaryButtonColor = LightThemeDarkBlue,
-    secondaryButtonColor = Color.White,
+    primaryButtonColor = DarkThemeDarkBlue,
+    secondaryButtonColor = DarkThemeSecondaryButtonColor,
     tertiaryButtonColor = DarkThemeSeaBlue,
     primaryButtonTextColor = Color.White,
     secondaryButtonTextColor = LightThemeDarkBlue,
-    surfaceColor = LightThemeCardLightBlue,
+    surfaceColor = DarkThemeDarkBlue,
     buttonBorderColor = LightThemeGray,
-    textFieldColor = Color.White,
-    textFieldBorderColor = LightThemeGray,
+    textFieldColor = DarkThemeSecondaryButtonColor,
+    textFieldBorderColor = DarkThemeSecondaryButtonColor,
     topBarColor = Color(0xFF8CA1AF)
 )
 

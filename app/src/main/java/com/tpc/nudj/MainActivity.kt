@@ -9,7 +9,6 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.tpc.nudj.ui.navigation.ScreenRoute
 import com.tpc.nudj.ui.screen.DemoScreen
-import com.tpc.nudj.ui.screen.auth.login.LoginScreen
 import com.tpc.nudj.ui.theme.NudjTheme
 import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
@@ -24,7 +23,9 @@ class MainActivity : ComponentActivity() {
                 NavDisplay(
                     backStack = backStack,
                     entryProvider = entryProvider {
-                        DemoScreen()
+                        entry<ScreenRoute.App.DemoScreen> {
+                            DemoScreen()
+                        }
                     }
                 )
             }
