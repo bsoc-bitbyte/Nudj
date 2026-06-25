@@ -50,6 +50,7 @@ import com.tpc.nudj.viewmodels.auth.login.LoginViewModel
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.tpc.nudj.model.enums.Role
 import com.tpc.nudj.ui.components.LoadingIndicator
 import com.tpc.nudj.ui.components.NudjTopAppBar
 import com.tpc.nudj.ui.components.SecondaryButton
@@ -124,17 +125,18 @@ fun LoginScreenLayout(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            if (uiState.role == Role.STUDENT) {
+            if (uiState.role == Role.USER) {
                 PrimaryButton(
                     text = "Student",
-                    onClick = {onRoleSelected(Role.STUDENT)},
+                    onClick = {onRoleSelected(Role.USER)},
+                    hasBorder = true,
                     modifier = Modifier.weight(1f)
                 )
 
             } else {
                 SecondaryButton(
                     text = "Student",
-                    onClick = {onRoleSelected(Role.STUDENT)},
+                    onClick = {onRoleSelected(Role.USER)},
                     modifier = Modifier.weight(1f)
                 )
             }
@@ -145,6 +147,7 @@ fun LoginScreenLayout(
                 PrimaryButton(
                     text = "Admin",
                     onClick = {onRoleSelected(Role.ADMIN)},
+                    hasBorder = true,
                     modifier = Modifier.weight(1f)
                 )
             } else {
