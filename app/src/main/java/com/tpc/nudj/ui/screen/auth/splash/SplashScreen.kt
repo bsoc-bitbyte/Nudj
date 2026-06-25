@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.window.SplashScreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,11 +25,11 @@ import com.tpc.nudj.ui.theme.LocalAppColors
 import com.tpc.nudj.ui.theme.NudjTheme
 
 @Composable
-fun SplashScreen(){
+fun SplashScreen() {
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
-        containerColor = LocalAppColors.current.background,
+        containerColor = LocalAppColors.current.background
 
     ) { paddingValues ->
         SplashScreenLayout()
@@ -37,36 +38,38 @@ fun SplashScreen(){
 
 
 @Composable
-fun SplashScreenLayout() {
+fun SplashScreenLayout(
+    darkTheme: Boolean = isSystemInDarkTheme()
+) {
 
-        Column(
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(LocalAppColors.current.background),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Image(
+            painter = painterResource(R.drawable.splash_screen_monkey),
+            contentDescription = "Nudj monkey",
             modifier = Modifier
-                .fillMaxSize()
-                .background(LocalAppColors.current.background),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+                .fillMaxWidth()
+                .weight(3f),
+            contentScale = ContentScale.Fit
 
-            Image(
-                painter = painterResource(R.drawable.splash_screen_monkey),
-                contentDescription = "Nudj monkey",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(3f),
-                contentScale = ContentScale.Fit
+        )
 
-            )
-
-            Image(
-                painter = painterResource(R.drawable.splash_screen_welcome),
-                contentDescription = "Welcome",
-                modifier = Modifier
-                    .fillMaxWidth(0.8f)
-                    .height(80.dp),
-                contentScale = ContentScale.Fit
-            )
-            Spacer(modifier = Modifier.weight(0.7f))
-        }
+        Image(
+            painter = painterResource(if (darkTheme) R.drawable.welcome_dark_theme else R.drawable.splash_screen_welcome),
+            contentDescription = "Welcome",
+            modifier = Modifier
+                .fillMaxWidth(0.8f)
+                .height(80.dp),
+            contentScale = ContentScale.Fit
+        )
+        Spacer(modifier = Modifier.weight(0.7f))
+    }
 }
 
 @Preview(showBackground = true)
