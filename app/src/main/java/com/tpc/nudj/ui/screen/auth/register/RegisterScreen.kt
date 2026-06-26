@@ -61,7 +61,7 @@ fun RegisterScreen(
             isConfirmPasswordVisible = uiState.isConfirmPasswordVisible,
             onPasswordVisibilityToggle = { viewmodel.onPasswordVisibilityToggle() },
             onConfirmPasswordVisibilityToggle = { viewmodel.onConfirmPasswordVisibilityToggle() },
-            onRoleSelected = { role -> viewmodel.onRoleChange(role) }, 
+            onRoleSelected = { role -> viewmodel.onRoleChange(role) },
             onSignUpClick = viewmodel::onRegisterClick,
             onGoogleClick = viewmodel::onGoogleClick,
             onLoginClick = onNavigateToLogin
@@ -87,13 +87,13 @@ fun RegisterScreenLayout(
     val appColors = LocalAppColor.current
     val dividerAndTextColor = if (isSystemInDarkTheme()) Color.White else Color.Black
 
-    
-    val currentRole = uiState.role 
+
+    val currentRole = uiState.role
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(appColors.backgroundColor) 
+            .background(appColors.backgroundColor)
             .padding(horizontal = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -154,10 +154,10 @@ fun RegisterScreenLayout(
 
         Spacer(modifier = Modifier.height(28.dp))
 
-      
+
         Text(
             text = "CREATE ACCOUNT",
-            color = appColors.primaryColor, 
+            color = appColors.primaryColor,
             style = MaterialTheme.typography.titleMedium
         )
 
@@ -182,7 +182,6 @@ fun RegisterScreenLayout(
                 PasswordTextField(
                     value = uiState.password,
                     onValueChange = onPasswordInput,
-                    label = "Password",
                     placeholder = "Password",
                     passwordVisible = isPasswordVisible,
                     onPasswordVisibilityToggle = onPasswordVisibilityToggle
@@ -191,7 +190,6 @@ fun RegisterScreenLayout(
                 PasswordTextField(
                     value = uiState.confirmPassword,
                     onValueChange = onConfirmPasswordInput,
-                    label = "Confirm Password",
                     placeholder = "Confirm Password",
                     passwordVisible = isConfirmPasswordVisible,
                     onPasswordVisibilityToggle = onConfirmPasswordVisibilityToggle
@@ -211,7 +209,7 @@ fun RegisterScreenLayout(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-   
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.width(110.dp),
@@ -248,7 +246,7 @@ fun RegisterScreenLayout(
             Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = "Continue with google",
-                color = appColors.primaryColor, 
+                color = appColors.primaryColor,
                 fontWeight = FontWeight.Normal,
                 fontSize = 14.sp
             )
@@ -256,7 +254,7 @@ fun RegisterScreenLayout(
 
         Spacer(modifier = Modifier.weight(0.6f))
 
-   
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(bottom = 24.dp)

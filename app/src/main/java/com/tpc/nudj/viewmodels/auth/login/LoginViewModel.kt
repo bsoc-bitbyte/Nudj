@@ -1,6 +1,7 @@
 package com.tpc.nudj.viewmodels.auth.login
 
 import androidx.lifecycle.ViewModel
+import com.tpc.nudj.model.enums.Role
 import com.tpc.nudj.ui.screen.auth.login.LoginUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -45,5 +46,13 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     fun onForgotPasswordClick() {}
 
     fun onGoogleClick() {}
+
+    fun onRoleSelected(role: Role) {
+        _loginUiState.update {
+            it.copy(role = role)
+        }
+    }
+
+    fun onCreateAccount()  {}
 
 }
