@@ -1,4 +1,4 @@
-package com.tpc.nudj.repository
+package com.tpc.nudj.repository.auth
 
 import android.content.Context
 import android.util.Log

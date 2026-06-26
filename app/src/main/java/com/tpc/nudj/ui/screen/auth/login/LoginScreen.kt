@@ -106,7 +106,7 @@ fun LoginScreenLayout(
         verticalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(R.drawable.nudjlogo),
+            painter = painterResource(R.drawable.nudj_logo),
             contentDescription = "Nudj Logo",
             modifier = Modifier.size(90.dp)
         )

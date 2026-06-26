@@ -38,17 +38,17 @@ fun LandingScreen(
             .fillMaxSize(),
         containerColor = LocalAppColors.current.background,
     ) { paddingValues ->
-        LoadingScreenLayout(
+        LandingScreenLayout(
             onLandingScreenClick = onLandingScreenClick
         )
     }
 }
 
 @Composable
-fun LoadingScreenLayout(
+fun LandingScreenLayout(
     onLandingScreenClick: () -> Unit
 ) {
-    var darkTheme : Boolean = isSystemInDarkTheme()
+    val darkTheme : Boolean = isSystemInDarkTheme()
     Column(
         modifier = Modifier,
         verticalArrangement = Arrangement.Center,

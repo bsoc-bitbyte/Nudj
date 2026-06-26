@@ -1,4 +1,4 @@
-package com.tpc.nudj.repository
+package com.tpc.nudj.repository.auth
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider

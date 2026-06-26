@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -21,9 +22,17 @@ import androidx.compose.ui.unit.dp
 import com.tpc.nudj.R
 import com.tpc.nudj.ui.theme.LocalAppColors
 import com.tpc.nudj.ui.theme.NudjTheme
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(
+    onSplashCompleted: () -> Unit
+) {
+    LaunchedEffect(key1 = true) {
+        delay(2000L.milliseconds)
+        onSplashCompleted()
+    }
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
@@ -36,10 +45,8 @@ fun SplashScreen() {
 
 
 @Composable
-fun SplashScreenLayout(
-
-) {
- var darkTheme : Boolean = isSystemInDarkTheme()
+fun SplashScreenLayout() {
+    val darkTheme : Boolean = isSystemInDarkTheme()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -75,8 +82,9 @@ fun SplashScreenLayout(
 @Composable
 private fun SplashScreenLayoutPreview() {
     NudjTheme {
-        SplashScreen()
-
+        SplashScreen(
+            onSplashCompleted = {}
+        )
     }
 }
 

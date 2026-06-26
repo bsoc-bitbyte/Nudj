@@ -54,7 +54,8 @@ fun EmailVerifiedScreen(
                 )
                 Text(
                     text = "Your email address was successfully verified!",
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = LocalAppColors.current.onBackground
                 )
             }
 

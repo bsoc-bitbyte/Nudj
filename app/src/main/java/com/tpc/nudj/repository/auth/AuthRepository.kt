@@ -1,4 +1,4 @@
-package com.tpc.nudj.repository
+package com.tpc.nudj.repository.auth
 
 import com.tpc.nudj.model.AuthResult
 import com.tpc.nudj.model.User
