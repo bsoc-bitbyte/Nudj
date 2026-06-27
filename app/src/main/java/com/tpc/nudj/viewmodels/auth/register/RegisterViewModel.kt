@@ -2,6 +2,7 @@ package com.tpc.nudj.viewmodels.auth.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tpc.nudj.model.enums.Role
 import com.tpc.nudj.ui.screen.auth.register.RegisterUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -28,6 +29,10 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
 
     fun onConfirmPasswordChange(newPassword: String) {
         _registerUiState.update { it.copy(confirmPassword = newPassword) }
+    }
+    
+    fun onRoleChange(newRole: Role) {
+        _registerUiState.update { it.copy(role = newRole) }
     }
 
     fun onRegisterClick() {

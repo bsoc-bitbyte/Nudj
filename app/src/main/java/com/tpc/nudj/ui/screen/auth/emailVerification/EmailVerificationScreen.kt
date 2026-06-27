@@ -11,12 +11,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.foundation.clickable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,6 +28,7 @@ import com.tpc.nudj.ui.components.LoadingIndicator
 import com.tpc.nudj.ui.components.NudjTopAppBar
 import com.tpc.nudj.ui.components.PrimaryButton
 import com.tpc.nudj.ui.components.TertiaryButton
+import com.tpc.nudj.ui.theme.LocalAppColors
 import com.tpc.nudj.ui.theme.NudjTheme
 import com.tpc.nudj.viewmodels.auth.emailVerification.EmailVerificationViewModel
 import kotlinx.coroutines.launch
@@ -60,38 +63,35 @@ fun EmailVerificationScreenLayout(
     val snackBarHostState = remember { SnackbarHostState() }
 
     Scaffold(
-        topBar = {
-            NudjTopAppBar(onBackClick = onBackClick)
-        },
         snackbarHost = {
             SnackbarHost(hostState = snackBarHostState)
-        }
+        },
+        containerColor = LocalAppColors.current.background
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = MaterialTheme.colorScheme.background)
                 .padding(paddingValues)
                 .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
 
-            Text(
-                text = "Sent successfully!",
-                style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-
-            Spacer(modifier = Modifier.height(48.dp))
-
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                painter = painterResource(id = R.drawable.meditating_mascot),
                 contentDescription = "Email Sent Illustration",
-                modifier = Modifier.size(300.dp)
+                modifier = Modifier.size(280.dp)
             )
 
-            Spacer(modifier = Modifier.height(64.dp))
+            Spacer(modifier = Modifier.height(40.dp))
+
+            Text(
+                text = uiState.formattedTime,
+                style = MaterialTheme.typography.displayMedium,
+                color = LocalAppColors.current.primaryButtonColor
+            )
+
+            Spacer(modifier = Modifier.height(56.dp))
 
             PrimaryButton(
                 text = "Check Inbox",
@@ -112,14 +112,14 @@ fun EmailVerificationScreenLayout(
                     }
                 },
                 modifier = Modifier
-                    .padding(bottom = 16.dp)
+                    .fillMaxWidth()
             )
 
 
-            Spacer(modifier = Modifier.height(16.dp) )
+            Spacer(modifier = Modifier.height(24.dp) )
 
             TertiaryButton(
-                text = "Resend Email?",
+                text = "Resend Email",
                 onClick = onResendEmailClick,
                 enabled = uiState.isResendEnabled
             )
