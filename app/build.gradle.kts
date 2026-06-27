@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.hilt)
     //ksp
     alias(libs.plugins.ksp)
-    // alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 val localPropertiesFile = rootProject.file("local.properties")

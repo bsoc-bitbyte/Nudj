@@ -27,7 +27,7 @@ import com.tpc.nudj.ui.screen.detailsFetch.UserDetailFetchScreen
 import com.tpc.nudj.ui.theme.NudjTheme
 import com.tpc.nudj.viewmodels.AppViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
+
 
 @AndroidEntryPoint
 
@@ -101,7 +101,9 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         entry<ScreenRoute.Auth.ForgotPassword> {
-                            ForgetPasswordScreen()
+                            ForgetPasswordScreen(
+                                onLoginClick = {}
+                            )
                         }
                         entry<ScreenRoute.App.UserDetailFetchScreen> {
                             UserDetailFetchScreen(

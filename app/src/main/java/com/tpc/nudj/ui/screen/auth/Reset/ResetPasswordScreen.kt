@@ -1,11 +1,8 @@
 package com.tpc.nudj.ui.screen.auth.Reset
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,8 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -26,15 +21,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.tpc.nudj.ui.components.LoadingIndicator
 import com.tpc.nudj.ui.theme.LocalAppColors
 import com.tpc.nudj.viewmodels.auth.ResetPassword.ResetPasswordViewModel
-import com.tpc.nudj.R
 import com.tpc.nudj.ui.components.NudjLogo
 import com.tpc.nudj.ui.components.PasswordTextField
 import com.tpc.nudj.ui.components.PrimaryButton
@@ -47,7 +39,7 @@ fun ResetPasswordScreen(
     onLoginClick :() ->Unit
 ) {
     Scaffold(
-        containerColor = LocalAppColors.current.background
+
     ) { paddingValues ->
 
         val uiState by viewModel.resetPasswordUiState.collectAsState()
