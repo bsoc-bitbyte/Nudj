@@ -142,7 +142,7 @@ fun RegisterScreenLayout(
             Spacer(modifier = Modifier.height(14.dp))
 
             Surface(
-                color = LocalAppColors.current.textFieldColor,
+                color = LocalAppColors.current.surfaceColor,
                 shape = RoundedCornerShape(12.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
