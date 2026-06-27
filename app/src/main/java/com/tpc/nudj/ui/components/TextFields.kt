@@ -84,12 +84,14 @@ fun NudjTextField(
 fun EmailTextField(
     value: String,
     onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
     placeholder: String = "Institute Mail id"
 ) {
     NudjTextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = placeholder,
+        modifier = modifier,
         leadingIcon = {
             Icon(
                 imageVector = Icons.Outlined.Mail,

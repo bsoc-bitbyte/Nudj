@@ -1,10 +1,11 @@
-package com.tpc.nudj.ui.screen.auth.forgotPassword
+package com.tpc.nudj.ui.screen.auth.Reset
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,63 +26,62 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.tpc.nudj.R
-import com.tpc.nudj.ui.components.EmailTextField
 import com.tpc.nudj.ui.components.LoadingIndicator
-import com.tpc.nudj.ui.components.NudjTopAppBar
+import com.tpc.nudj.ui.theme.LocalAppColors
+import com.tpc.nudj.viewmodels.auth.ResetPassword.ResetPasswordViewModel
+import com.tpc.nudj.R
+import com.tpc.nudj.ui.components.PasswordTextField
 import com.tpc.nudj.ui.components.PrimaryButton
 import com.tpc.nudj.ui.components.TertiaryButton
-import com.tpc.nudj.ui.screen.auth.login.LoginScreenLayout
-import com.tpc.nudj.ui.screen.auth.login.LoginUiState
-import com.tpc.nudj.ui.theme.LocalAppColors
 import com.tpc.nudj.ui.theme.NudjTheme
-import com.tpc.nudj.viewmodels.auth.forgotPassword.ForgotPasswordViewModel
 
 @Composable
-fun ForgetPasswordScreen(
-    viewModel: ForgotPasswordViewModel = hiltViewModel(),
-
+fun ResetPasswordScreen(
+    viewModel: ResetPasswordViewModel = hiltViewModel()
 ) {
     Scaffold(
         containerColor = LocalAppColors.current.background
     ) { paddingValues ->
-        val uiState by viewModel.forgotPasswordUiState.collectAsState()
-        LoadingIndicator(isLoading = uiState.isLoading) {
 
-            ForgetPasswordScreenLayout(
+        val uiState by viewModel.resetPasswordUiState.collectAsState()
+        LoadingIndicator(isLoading = uiState.isLoading) {
+            ResetPasswordScreenLayout(
                 modifier = Modifier.padding(paddingValues),
                 uiState = uiState,
-                onEmailInput = viewModel::onEmailChange,
-                onLoginClick = viewModel::onLoginClick,
-                onSendEmailClick = viewModel::onSendEmailClick
-
+                onPasswordInput = viewModel::onPasswordChange,
+                onConfirmPasswordInput = viewModel::onConfirmPasswordChange,
+                onPasswordVisibilityToggle = viewModel::togglePasswordVisibility,
+                onConfirmPasswordVisibilityToggle = viewModel::toggleConfirmPasswordVisibility,
+                onSubmitClick = viewModel::onSubmitClick,
+                onLoginClick = viewModel::onLoginClick
             )
         }
     }
-}
-
-@Composable
-fun ForgetPasswordScreenLayout(
+}@Composable
+fun ResetPasswordScreenLayout(
+    uiState: ResetPasswordUiState,
     modifier: Modifier = Modifier,
-    uiState: ForgotPasswordUiState,
-    onEmailInput : (String) -> Unit,
-    onLoginClick :()-> Unit,
-    onSendEmailClick: () -> Unit
-
-){
+    onPasswordInput: (String) -> Unit,
+    onConfirmPasswordInput: (String) -> Unit,
+    onPasswordVisibilityToggle: () -> Unit,
+    onConfirmPasswordVisibilityToggle: () -> Unit,
+    onSubmitClick: () -> Unit,
+    onLoginClick: () -> Unit
+) {
     val darkTheme = isSystemInDarkTheme()
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(LocalAppColors.current.background)
-            .padding(horizontal = 32.dp),
+            .padding(horizontal = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(72.dp))
+        Spacer(modifier = Modifier.height(56.dp))
 
         Image(
             painter = painterResource(
@@ -109,10 +109,10 @@ fun ForgetPasswordScreenLayout(
                 .height(40.dp)
         )
 
-        Spacer(modifier = Modifier.height(120.dp))
+        Spacer(modifier = Modifier.height(96.dp))
 
         Text(
-            text = "Enter your email address",
+            text = "Submit",
             style = MaterialTheme.typography.titleLarge,
             color = LocalAppColors.current.secondaryButtonTextColor
         )
@@ -126,19 +126,35 @@ fun ForgetPasswordScreenLayout(
                 containerColor = LocalAppColors.current.surfaceColor
             )
         ) {
-            EmailTextField(
-                value = uiState.email,
-                onValueChange = onEmailInput,
-                placeholder = "Institute mail id",
+            Column(
                 modifier = Modifier.padding(16.dp)
-            )
+            ) {
+                PasswordTextField(
+                    value = uiState.password,
+                    onValueChange = onPasswordInput,
+                    passwordVisible = uiState.passwordVisible,
+                    onPasswordVisibilityToggle =
+                        onPasswordVisibilityToggle,
+                    placeholder = "New Password"
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                PasswordTextField(
+                    value = uiState.confirmPassword,
+                    onValueChange = onConfirmPasswordInput,
+                    passwordVisible = uiState.confirmPasswordVisible,
+                    onPasswordVisibilityToggle = onConfirmPasswordVisibilityToggle,
+                    placeholder = "Confirm Password"
+                )
+            }
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(64.dp))
 
         PrimaryButton(
             text = "Reset Password",
-            onClick = onSendEmailClick,
+            onClick = onSubmitClick,
             enabled = !uiState.isLoading,
             modifier = Modifier
                 .fillMaxWidth()
@@ -164,20 +180,20 @@ fun ForgetPasswordScreenLayout(
             )
         }
     }
-
 }
-
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun ForgetPasswordScreenLayoutPreview() {
+private fun ResetPasswordScreenLayoutPreview() {
     NudjTheme {
-        ForgetPasswordScreenLayout(
-            modifier = Modifier,
-            uiState = ForgotPasswordUiState(),
-            onEmailInput = {},
-            onLoginClick = {},
-            onSendEmailClick = {}
+        ResetPasswordScreenLayout(
+            uiState = ResetPasswordUiState(),
+            onPasswordInput = {},
+            onConfirmPasswordInput = {},
+            onPasswordVisibilityToggle = {},
+            onConfirmPasswordVisibilityToggle = {},
+            onSubmitClick = {},
+            onLoginClick = {}
         )
     }
 }
