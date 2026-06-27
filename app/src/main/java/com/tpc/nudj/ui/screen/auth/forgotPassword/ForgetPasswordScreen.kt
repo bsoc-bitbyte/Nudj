@@ -32,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.tpc.nudj.R
 import com.tpc.nudj.ui.components.EmailTextField
 import com.tpc.nudj.ui.components.LoadingIndicator
+import com.tpc.nudj.ui.components.NudjLogo
 import com.tpc.nudj.ui.components.NudjTopAppBar
 import com.tpc.nudj.ui.components.PrimaryButton
 import com.tpc.nudj.ui.components.TertiaryButton
@@ -44,6 +45,7 @@ import com.tpc.nudj.viewmodels.auth.forgotPassword.ForgotPasswordViewModel
 @Composable
 fun ForgetPasswordScreen(
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
+    onLoginClick: () -> Unit
 
 ) {
     Scaffold(
@@ -56,7 +58,7 @@ fun ForgetPasswordScreen(
                 modifier = Modifier.padding(paddingValues),
                 uiState = uiState,
                 onEmailInput = viewModel::onEmailChange,
-                onLoginClick = viewModel::onLoginClick,
+                onLoginClick = onLoginClick,
                 onSendEmailClick = viewModel::onSendEmailClick
 
             )
@@ -73,7 +75,7 @@ fun ForgetPasswordScreenLayout(
     onSendEmailClick: () -> Unit
 
 ){
-    val darkTheme = isSystemInDarkTheme()
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -83,31 +85,7 @@ fun ForgetPasswordScreenLayout(
     ) {
         Spacer(modifier = Modifier.height(72.dp))
 
-        Image(
-            painter = painterResource(
-                if (darkTheme) {
-                    R.drawable.nudj_logo_dark_theme
-                } else {
-                    R.drawable.nudj_logo
-                }
-            ),
-            contentDescription = "Nudj logo",
-            modifier = Modifier.size(72.dp)
-        )
-
-        Image(
-            painter = painterResource(
-                if (darkTheme) {
-                    R.drawable.nudj_dark_theme
-                } else {
-                    R.drawable.nudj
-                }
-            ),
-            contentDescription = "Nudj",
-            modifier = Modifier
-                .width(90.dp)
-                .height(40.dp)
-        )
+        NudjLogo()
 
         Spacer(modifier = Modifier.height(120.dp))
 

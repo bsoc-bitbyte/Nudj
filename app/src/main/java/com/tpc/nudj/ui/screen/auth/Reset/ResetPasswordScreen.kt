@@ -35,6 +35,7 @@ import com.tpc.nudj.ui.components.LoadingIndicator
 import com.tpc.nudj.ui.theme.LocalAppColors
 import com.tpc.nudj.viewmodels.auth.ResetPassword.ResetPasswordViewModel
 import com.tpc.nudj.R
+import com.tpc.nudj.ui.components.NudjLogo
 import com.tpc.nudj.ui.components.PasswordTextField
 import com.tpc.nudj.ui.components.PrimaryButton
 import com.tpc.nudj.ui.components.TertiaryButton
@@ -42,7 +43,8 @@ import com.tpc.nudj.ui.theme.NudjTheme
 
 @Composable
 fun ResetPasswordScreen(
-    viewModel: ResetPasswordViewModel = hiltViewModel()
+    viewModel: ResetPasswordViewModel = hiltViewModel(),
+    onLoginClick :() ->Unit
 ) {
     Scaffold(
         containerColor = LocalAppColors.current.background
@@ -58,7 +60,7 @@ fun ResetPasswordScreen(
                 onPasswordVisibilityToggle = viewModel::togglePasswordVisibility,
                 onConfirmPasswordVisibilityToggle = viewModel::toggleConfirmPasswordVisibility,
                 onSubmitClick = viewModel::onSubmitClick,
-                onLoginClick = viewModel::onLoginClick
+                onLoginClick = onLoginClick
             )
         }
     }
@@ -73,7 +75,6 @@ fun ResetPasswordScreenLayout(
     onSubmitClick: () -> Unit,
     onLoginClick: () -> Unit
 ) {
-    val darkTheme = isSystemInDarkTheme()
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -82,39 +83,14 @@ fun ResetPasswordScreenLayout(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(56.dp))
-
-        Image(
-            painter = painterResource(
-                if (darkTheme) {
-                    R.drawable.nudj_logo_dark_theme
-                } else {
-                    R.drawable.nudj_logo
-                }
-            ),
-            contentDescription = "Nudj logo",
-            modifier = Modifier.size(72.dp)
-        )
-
-        Image(
-            painter = painterResource(
-                if (darkTheme) {
-                    R.drawable.nudj_dark_theme
-                } else {
-                    R.drawable.nudj
-                }
-            ),
-            contentDescription = "Nudj",
-            modifier = Modifier
-                .width(90.dp)
-                .height(40.dp)
-        )
+        NudjLogo()
 
         Spacer(modifier = Modifier.height(96.dp))
 
         Text(
-            text = "Submit",
+            text = "Reset Password",
             style = MaterialTheme.typography.titleLarge,
-            color = LocalAppColors.current.secondaryButtonTextColor
+            color = LocalAppColors.current.onBackground
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -153,7 +129,7 @@ fun ResetPasswordScreenLayout(
         Spacer(modifier = Modifier.height(64.dp))
 
         PrimaryButton(
-            text = "Reset Password",
+            text = "Submit",
             onClick = onSubmitClick,
             enabled = !uiState.isLoading,
             modifier = Modifier
