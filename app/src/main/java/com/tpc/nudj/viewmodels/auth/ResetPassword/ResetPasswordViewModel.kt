@@ -44,7 +44,5 @@ class ResetPasswordViewModel @Inject constructor() : ViewModel() {
     fun onSubmitClick() {
 
     }
-    fun onLoginClick() {
 
-    }
 }
