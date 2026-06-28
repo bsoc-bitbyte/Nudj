@@ -15,6 +15,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -39,7 +40,7 @@ fun ResetPasswordScreen(
     onLoginClick :() ->Unit
 ) {
     Scaffold(
-
+        containerColor = LocalAppColors.current.background
     ) { paddingValues ->
 
         val uiState by viewModel.resetPasswordUiState.collectAsState()
@@ -70,7 +71,6 @@ fun ResetPasswordScreenLayout(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(LocalAppColors.current.background)
             .padding(horizontal = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -154,14 +154,19 @@ fun ResetPasswordScreenLayout(
 @Composable
 private fun ResetPasswordScreenLayoutPreview() {
     NudjTheme {
-        ResetPasswordScreenLayout(
-            uiState = ResetPasswordUiState(),
-            onPasswordInput = {},
-            onConfirmPasswordInput = {},
-            onPasswordVisibilityToggle = {},
-            onConfirmPasswordVisibilityToggle = {},
-            onSubmitClick = {},
-            onLoginClick = {}
-        )
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = LocalAppColors.current.background
+        ) {
+            ResetPasswordScreenLayout(
+                uiState = ResetPasswordUiState(),
+                onPasswordInput = {},
+                onConfirmPasswordInput = {},
+                onPasswordVisibilityToggle = {},
+                onConfirmPasswordVisibilityToggle = {},
+                onSubmitClick = {},
+                onLoginClick = {}
+            )
+        }
     }
 }

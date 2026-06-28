@@ -40,6 +40,7 @@ fun ForgetPasswordScreen(
 
 ) {
     Scaffold(
+        containerColor = LocalAppColors.current.background
 
     ) { paddingValues ->
         val uiState by viewModel.forgotPasswordUiState.collectAsState()
@@ -70,7 +71,6 @@ fun ForgetPasswordScreenLayout(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(LocalAppColors.current.background)
             .padding(horizontal = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
