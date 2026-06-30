@@ -25,6 +25,7 @@ import com.tpc.nudj.ui.screen.auth.login.LoginScreen
 import com.tpc.nudj.ui.screen.auth.register.RegisterScreen
 import com.tpc.nudj.ui.screen.auth.reset.ResetPasswordScreen
 import com.tpc.nudj.ui.screen.auth.splash.SplashScreen
+import com.tpc.nudj.ui.screen.auth.userDetailsInput.UserDetailsInputScreen
 import com.tpc.nudj.ui.theme.NudjTheme
 import com.tpc.nudj.viewmodels.AppViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -136,7 +137,8 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 )
-            }
-        }
-    }
+
+          }
+       }
+   }
 }
