@@ -25,8 +25,12 @@ data class AppColors(
     val buttonBorderColor: Color,
     val textFieldColor: Color,
     val textFieldBorderColor: Color,
-    val topBarColor: Color
-)
+    val topBarColor: Color,
+    val textFieldCardColor: Color,
+    val dropDownMenuColor: Color,
+
+    )
+
 private val LightColorScheme = AppColors(
     background = LightThemeBackgroundBlue,
     onBackground = LightThemeDarkBlue,
@@ -39,7 +43,9 @@ private val LightColorScheme = AppColors(
     buttonBorderColor = LightThemeGray,
     textFieldColor = Color.White,
     textFieldBorderColor = DarkThemeSecondaryButtonColor,
-    topBarColor = Color(0xFF8CA1AF)
+    topBarColor = Color(0xFF8CA1AF),
+    textFieldCardColor = LightThemeCardLightBlue,
+    dropDownMenuColor = Color.White,
 )
 
 private val DarkColorScheme = AppColors(
@@ -54,7 +60,9 @@ private val DarkColorScheme = AppColors(
     buttonBorderColor = LightThemeGray,
     textFieldColor = DarkThemeSecondaryButtonColor,
     textFieldBorderColor = DarkThemeSecondaryButtonColor,
-    topBarColor = Color(0xFF8CA1AF)
+    topBarColor = Color(0xFF8CA1AF),
+    textFieldCardColor = DarkThemeDarkBlue,
+    dropDownMenuColor = DarkThemeSecondaryButtonColor,
 )
 
 @Composable

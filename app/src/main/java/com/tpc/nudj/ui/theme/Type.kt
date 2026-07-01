@@ -11,7 +11,7 @@ import androidx.compose.ui.text.googlefonts.Font
 import com.tpc.nudj.R
 
 @Composable
-fun appTypography(): Typography{
+fun appTypography(): Typography {
     val isPreview = LocalInspectionMode.current
 
     val provider = GoogleFont.Provider(
@@ -21,10 +21,9 @@ fun appTypography(): Typography{
     )
 
     val bodyFontFamily =
-        if(isPreview){
+        if (isPreview) {
             FontFamily(Font(R.font.poppinsregular))
-        }
-        else{
+        } else {
             FontFamily(
                 Font(
                     googleFont = GoogleFont("Poppins"),
@@ -34,10 +33,9 @@ fun appTypography(): Typography{
         }
 
     val displayFontFamily =
-        if(isPreview){
+        if (isPreview) {
             FontFamily(Font(R.font.bakbakoneregular))
-        }
-        else{
+        } else {
             FontFamily(
                 Font(
                     googleFont = GoogleFont("Bakbak One"),

@@ -2,7 +2,6 @@ package com.tpc.nudj.viewmodels.auth.userDetailsInput
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.tpc.nudj.ui.components.BatchYearDropDownMenu
 import com.tpc.nudj.ui.screen.auth.userDetailsInput.UserDetailsInputScreenUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
@@ -17,7 +16,7 @@ class UserDetailsInputViewModel @Inject constructor() : ViewModel() {
     val userDetailsInputUiState: StateFlow<UserDetailsInputScreenUiState> =
         _userDetailsInputUiState.asStateFlow()
 
-    fun onStudentNameChage(studentName: String) {
+    fun onStudentNameChange(studentName: String) {
         _userDetailsInputUiState.update { it.copy(studentName = studentName) }
     }
 
@@ -27,6 +26,10 @@ class UserDetailsInputViewModel @Inject constructor() : ViewModel() {
 
     fun onBatchYearChange(Batch: String) {
         _userDetailsInputUiState.update { it.copy(batchYear = Batch) }
+    }
+
+    fun onExpandedStateChange(value: Boolean) {
+        _userDetailsInputUiState.update { it.copy(expanded = value) }
     }
 
 
