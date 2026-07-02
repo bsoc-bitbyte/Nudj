@@ -77,7 +77,8 @@ fun NudjDropDownMenu(
                     text = {
                         Text(
                             option,
-                            style = MaterialTheme.typography.bodyLarge
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = LocalAppColors.current.blackTextColor
                         )
 
                     },
