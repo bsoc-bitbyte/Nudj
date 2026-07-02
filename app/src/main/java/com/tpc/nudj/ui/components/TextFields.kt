@@ -42,7 +42,9 @@ fun NudjTextField(
     isPassword: Boolean = false,
     keyboardType: KeyboardType = KeyboardType.Text,
     leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null
+    trailingIcon: @Composable (() -> Unit)? = null,
+    readOnly: Boolean = false,
+
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
 
@@ -75,7 +77,8 @@ fun NudjTextField(
                 unfocusedTrailingIconColor = Color.Black,
                 focusedTrailingIconColor = Color.Black,
                 cursorColor = Color.Black
-            )
+            ),
+            readOnly = readOnly
         )
     }
 }
