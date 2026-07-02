@@ -1,6 +1,5 @@
 package com.tpc.nudj.viewmodels.auth.userDetailsInput
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.tpc.nudj.ui.screen.auth.userDetailsInput.UserDetailsInputScreenUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
